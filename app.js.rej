@@ -1,0 +1,21 @@
+diff a/app.js b/app.js	(rejected hunks)
+@@ -28,11 +28,17 @@
+ });
+ 
+ 
+-app.get('/aboutus',function(req,res)
++app.get('/Createaccount.html',function(req,res)
+ {
+-res.render('aboutus');
++    res.sendFile('Createaccount.html', {root:path.join(__dirname,'./public/html')});
+ });
+ 
++app.get('/SignIn.html',function(req,res)
++{
++    res.sendFile('SignIn.html', {root:path.join(__dirname,'./public/html')});
++});
++
++
+ 
+ 
+ 
