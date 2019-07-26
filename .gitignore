@@ -1,2 +1,14 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
 node_modules
+app.js.rej
+public/css/BloodWebsite.css
+public/html/BloodWebsite1.html
+public/images/blooddonate.jpg
+public/images/blooddrop.png
+public/images/BloodFavIcon.jpg
+public/images/Carousel1.gif
+public/images/Carousel2.gif
+public/images/Carousel3.gif
+public/images/Screenshot (2).png
+public/images/Screenshot (4).png
+public/images/Signinpageblooddrop.png
