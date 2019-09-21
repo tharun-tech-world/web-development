@@ -1,4 +1,123 @@
-.carouselimage{
+body {
+  margin: 0;
+}
+
+.headersec {
+  background-color: #abfdbb;
+  text-align: center;
+  margin: 0;
+}
+
+.headercol {
+  margin: 5% auto 0% auto;
+}
+
+h1 {
+  font-family: 'Ubuntu', sans-serif;
+  color: black;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-size: 2rem;
+}
+
+h3 {
+  font-family: 'Merriweather Sans', sans-serif;
+  font-size: 1.2rem;
+}
+
+p {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+}
+
+/* Carousel Part */
+.carouselimage {
   height: 450px;
   width: 100%;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.section {
+  width: 90%;
+  margin: 30px auto 30px auto;
+  text-align: center;
+}
+
+/* Section Icons */
+.iconsj {
+  color: blue;
+  margin: 20px;
+}
+
+.iconsp {
+  color: orange;
+  margin: 20px;
+}
+
+.iconsa {
+  color: #03a9f4;
+  margin: 20px;
+}
+
+.iconsj:hover {
+  color: red;
+}
+
+.iconsp:hover {
+  color: #10597a;
+}
+
+.iconsa:hover {
+  color: green;
+}
+
+/* footer */
+.foot {
+  background-color: #c0f776;
+  text-align: center;
+}
+
+.ficons {
+  color: #707573;
+}
+
+.iconf:hover {
+  color: blue;
+}
+
+.iconi:hover {
+  color: #f949f1;
+}
+
+.icont:hover {
+  color: #08eaf9;
+}
+
+.iconl:hover {
+  color: #164da9;
+}
+
+.icongi:hover {
+  color: black;
+}
+
+.icony:hover {
+  color: red;
 }

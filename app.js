@@ -3,13 +3,7 @@ const request = require('request');
 const app = express();
 const path = require('path');
 
-// Load View Engine
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'pug');
-
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 
 app.get('/', function(req, res) {
   res.sendFile('main.html', {
@@ -17,19 +11,11 @@ app.get('/', function(req, res) {
   });
 });
 
-
-app.get('/AboutBloodGroup.html', function(req, res) {
-  res.sendFile('AboutBloodGroup.html', {
+app.get('/About', function(req, res) {
+  res.sendFile('About.html', {
     root: path.join(__dirname, './public/html')
   });
 });
-
-app.get('/BloodDonators.html', function(req, res) {
-  res.sendFile('BloodDonators.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
-
 
 app.get('/Createaccount.html', function(req, res) {
   res.sendFile('Createaccount.html', {
@@ -43,10 +29,23 @@ app.get('/SignIn.html', function(req, res) {
   });
 });
 
+app.get('/Java.html', function(req, res) {
+  res.sendFile('Java.html', {
+    root: path.join(__dirname, './public/html')
+  });
+});
 
+app.get('/Python.html', function(req, res) {
+  res.sendFile('Python.html', {
+    root: path.join(__dirname, './public/html')
+  });
+});
 
-
-
+app.get('/Automation.html', function(req, res) {
+  res.sendFile('Automation.html', {
+    root: path.join(__dirname, './public/html')
+  });
+});
 
 
 
