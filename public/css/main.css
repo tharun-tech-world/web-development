@@ -34,6 +34,38 @@ p {
   font-size: 1.2rem;
 }
 
+/* Dropdown Actions */
+
+
+
+.drpdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.drpdown-content a {
+  color: black;
+  font-size: 1rem;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.drpdown-content a:hover {
+  background-color: #0e7541;
+  color: white;
+
+}
+.drpdown:hover .drpdown-content {
+  display: block;
+
+}
+
 /* Carousel Part */
 .carouselimage {
   height: 450px;
