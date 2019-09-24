@@ -2,16 +2,6 @@ body {
   margin: 0;
 }
 
-.headersec {
-  background-color: #abfdbb;
-  text-align: center;
-  margin: 0;
-}
-
-.headercol {
-  margin: 5% auto 0% auto;
-}
-
 h1 {
   font-family: 'Ubuntu', sans-serif;
   color: black;
@@ -34,6 +24,41 @@ p {
   font-size: 1.2rem;
 }
 
+/* Dropdown Actions */
+
+li.drpdown {
+  display: inline-block;
+}
+
+.drpdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.drpdown-content a {
+  color: black;
+  font-size: 1rem;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.drpdown-content a:hover {
+  background-color: #0e7541;
+  color: white;
+
+}
+
+.drpdown:hover .drpdown-content {
+  display: block;
+
+}
+
 /* Carousel Part */
 .carouselimage {
   height: 450px;
@@ -54,11 +79,31 @@ p {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
 
+/* Header Goes here */
+
+.headersec {
+  background-color: #abfdbb;
+  text-align: center;
+  margin: 0;
+}
+
+.headercol {
+
+  margin-top: 8%;
+}
+.headerimg{
+
+  margin: 2% 0% 0% auto;
+
+}
+
 .section {
   width: 90%;
   margin: 30px auto 30px auto;
   text-align: center;
 }
+
+
 
 /* Section Icons */
 .iconsj {
