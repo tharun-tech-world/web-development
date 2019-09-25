@@ -1,5 +1,4 @@
 const express = require('express');
-const request = require('request');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser')
@@ -15,16 +14,22 @@ const {registerValidation, loginValidation} = require('./validation')
 dotenv.config();
 
 //Connect to Mongo DB using mongoose
-mongoose.connect( process.env.DATABASE_CONNECT, {useNewUrlParser: true},
-    () => console.log('Connected to Mongo DB')
-);
-
+mongoose.connect(process.env.DATABASE_CONNECT, {useNewUrlParser: true,
+  useUnifiedTopology: true}) // If you are using a cluster, this will be generated for you
+.then(() => {
+    console.log('Connected Successfully to MongoDB Atlas!');
+})
+.catch((error) => {
+    console.log('Unable to connect to MongoDB Atlas!');
+    console.error(error);
+});
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 //Middleware for body parser
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
@@ -59,42 +64,34 @@ res.render("Automation");
 });
 
 
-app.post("/createaccount",  (req, res) => {
+app.post("/createaccount",   (req, res) => {
 
-  // //Validate the input data given in the form input fields before we create a user.
+  // // //Validate the input data given in the form input fields before we create a user.
   //    const {error} = registerValidation(req.body);
   //    if(error) return res.status(400).send(error.details[0].message);
-  //
+  
   //    //Checking if the user is already in the Mongo DataBase(DB)
-  //    const emailExist = await User.findOne({email: req.body.email});
+  //    const emailExist =  User.findOne({email: req.body.email});
   //    if (emailExist) return res.status(400).send('Email already exists');
-  //
-  //    //Hashing passwords
-  //    const salt = await bcrypt.genSalt(10);
-  //    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  
+     //Hashing passwords
+     const salt =  bcrypt.genSaltSync(10);
+     const hashedPassword =  bcrypt.hashSync(req.body.password, salt);
 
   //Creating New User in Mongo DB with user input values.
     const user = new User({
         // name: req.body.name,
         email: req.body.email,
-        password: req.body.password
-    });
+        password: hashedPassword
+    })
 
-    console.log(user);
-
-    try{
-       const savedUser = user.save();
-
-        console.log(savedUser);
-
-       //console.log(res.send(savedUser));
-       //console.log(res.send({user: user._id}));
-
-   }catch(err){
-
+    try {
+      user.save();
+      console.log(user);
+      res.status(201).send("Registered Successfully");
+  } catch(err) {
       console.log(err);
-       //res.sendStatus(400).send(err);
-   }
+  }
 })
 
 

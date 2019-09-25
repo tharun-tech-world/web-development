@@ -15,7 +15,7 @@ const registerValidation = data => {
             .min(6)
             .required(), //regex(/^[a-zA-Z0-9]{3,30}$/)
     }
-    // return Joi.validate(data, schema)
+    return Joi.validate(data, schema)
 
 };
 
