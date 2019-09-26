@@ -84,7 +84,7 @@ router.post('/signin', async (req, res) => {
     if (!validpassword) return res.status(400).send('Invalid password');
 
     //Create and assign a jwttoken
-    const jwttoken = jwt.sign({_id: user._id}, process.env.SECRET);
+    const jwttoken = jwt.sign({_id: user._id}, process.env.SECRET, {expiresIn: '24h'});
     res.header('auth0-token', jwttoken).render("Java");
     console.log(jwttoken);
 
