@@ -62,7 +62,7 @@ router.post("/createaccount",   async (req, res) => {
     try {
       const savedUser = await user.save();
       //console.log(savedUser);
-      res.status(201).render("registersuccess");
+      res.status(201).render("success");
   } catch(err) {
       res.status(400).send(err);
   }
