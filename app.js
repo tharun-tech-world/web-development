@@ -1,52 +1,49 @@
 const express = require('express');
-const request = require('request');
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const ejs = require('ejs');
+const bcrypt = require('bcryptjs');
 
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(req, res) {
-  res.sendFile('main.html', {
-    root: path.join(__dirname, './public/html')
-  });
+//Imports Routes Here
+ const auth0Route = require('./routes/auth0');
+ const postRoute = require('./routes/postroutes');
+
+
+dotenv.config();
+
+//Connect to Mongo DB using mongoose
+mongoose.connect(process.env.DATABASE_CONNECT, {useNewUrlParser: true,
+  useUnifiedTopology: true}) // If you are using a cluster, this will be generated for you
+.then(() => {
+    console.log('Connected Successfully to MongoDB Atlas!');
+})
+.catch((error) => {
+    console.log('Unable to connect to MongoDB Atlas!');
+    console.error(error);
 });
 
-app.get('/About', function(req, res) {
-  res.sendFile('About.html', {
-    root: path.join(__dirname, './public/html')
-  });
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
 });
 
-app.get('/Createaccount.html', function(req, res) {
-  res.sendFile('Createaccount.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
-app.get('/SignIn.html', function(req, res) {
-  res.sendFile('SignIn.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
+//Middleware for body parser
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/Java.html', function(req, res) {
-  res.sendFile('Java.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
-
-app.get('/Python.html', function(req, res) {
-  res.sendFile('Python.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
-
-app.get('/Automation.html', function(req, res) {
-  res.sendFile('Automation.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
+ //Routes Middlewares
+ app.use('/', auth0Route);
+ app.use('/posts', postRoute);
 
 
-
-var server = app.listen(3000, function() {});
+var server = app.listen(3000, () => console.log('Server is up and running on port 3000.....'));

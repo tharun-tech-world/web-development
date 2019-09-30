@@ -1,0 +1,29 @@
+body{
+  margin: 8% auto auto auto;
+  align-items: center;
+  background-color: #e4f1ad;
+  text-align: center;
+}
+h1{
+font-size: 65px;
+font-family: 'Pacifico', cursive;
+}
+h2{
+font-size: 45px;
+font-family: 'Pacifico', cursive;
+}
+p{
+  font-size: 25px;
+  font-family: 'Nunito', sans-serif;
+}
+.successmessage{
+  line-height: 6;
+  align-items: center;
+  text-align: center;
+  margin:auto ;
+  width: auto;
+}
+.ticon{
+
+  color: green;
+}
