@@ -13,8 +13,13 @@ h1{
   margin: auto;
 }
 img{
+<<<<<<< HEAD
   width: 100%;
   height: 500px;
+=======
+  height: 500px;
+  width: 100%;
+>>>>>>> f2c8782aee7c380b633229559cdbc14ee53318d5
   box-shadow: 0 4px 8px 0 rgba(0, 122, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
 }
 .form-group{
