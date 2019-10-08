@@ -2,7 +2,15 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const User = require('../model/User');
-const {registerValidation, loginValidation} = require('../validation')
+const {
+  registerValidation,
+  loginValidation
+} = require('../validation')
+
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
+
 
 
 
@@ -18,10 +26,10 @@ router.get('/About', function(req, res) {
 });
 
 router.get('/createaccount', function(req, res) {
-res.render("Createaccount")
+  res.render("Createaccount")
 });
 
-router.get('/signIn', function(req, res) {
+router.get('/signin', function(req, res) {
   res.render("SignIn");
 });
 
@@ -30,108 +38,109 @@ router.get('/java', function(req, res) {
 });
 
 router.get('/python', function(req, res) {
-res.render("Python");
+  res.render("Python");
 });
 
 router.get('/automation', function(req, res) {
-res.render("Automation");
+  res.render("Automation");
 });
 
+router.get("/success", function(req, res) {
 
-router.post("/createaccount",   async (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("success")
+  } else(
+    res.redirect("/signin")
+  )
+})
 
-  //Validate the input data given in the form input fields before we create a user.
-     const { error } = registerValidation(req.body);
-     if(error) return res.status(400).send(error.details[0].message);
+router.get("/main", function(req, res) {
 
-     //Checking if the user is already in the Mongo DataBase(DB)
-     const emailExist = await User.findOne({email: req.body.email});
-     if (emailExist) return res.status(400).send('Email already exists');
+  if (req.isAuthenticated()) {
+    res.render("main")
+  } else(
+    res.redirect("/signin")
+  )
+})
 
-     //Hashing passwords
-     const salt = await bcrypt.genSalt(10);
-     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+router.get("/signout", function(req, res) {
+  req.logout();
+  res.redirect("/");
+})
 
-  //Creating New User in Mongo DB with user input values.
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword
-    })
+router.post("/createaccount", async (req, res) => {
 
-    try {
-      const savedUser = await user.save();
-      //console.log(savedUser);
-      res.status(201).render("success");
-  } catch(err) {
-      res.status(400).send(err);
-  }
+  User.register({
+    username: req.body.username
+  }, req.body.password, function(err, user) {
+
+    if (err) {
+      console.log(err);
+      res.redirect("/createaccount");
+    } else {
+      passport.authenticate("local")(req, res, function() {
+        res.redirect("/success")
+      })
+    }
+  })
+});
+
+router.post("/signin", function(req, res) {
+
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  req.login(user, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local")(req, res, function() {
+        res.redirect("/main");
+      });
+    }
+  })
 })
 
 
-router.post('/signin', async (req, res) => {
+
+
+
 //
-    //Validate the input data matches the criteria.
-    const {error} = loginValidation(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
-
-    //Checking the email is exist or not ?
-    const user = await User.findOne({email: req.body.email});
-    if (!user) return res.status(400).send("Email doesn't exist");
-
-    //Checking Password is correct or not ?
-    const validpassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validpassword) return res.status(400).send('Invalid password');
-
-    //Create and assign a jwttoken
-    const jwttoken = jwt.sign({_id: user._id}, process.env.SECRET, {expiresIn: '24h'});
-    res.header('auth0-token', jwttoken).render("main");
-    console.log(jwttoken);
-
-
-    //res.send('Successfully Logged in...!')
-})
-
-
-
-
-
-// //Register Routing
-// router.post('/register', async (req, res) => {
+// router.post("/createaccount",   async (req, res) => {
 //
-//     //Validate the input data given in the form input fields before we create a user.
-//     const {error} = registerValidation(req.body);
-//     if(error) return res.status(400).send(error.details[0].message);
+//   //Validate the input data given in the form input fields before we create a user.
+//      const { error } = registerValidation(req.body);
+//      if(error) return res.status(400).send(error.details[0].message);
 //
-//     //Checking if the user is already in the Mongo DataBase(DB)
-//     const emailExist = await User.findOne({email: req.body.email});
-//     if (emailExist) return res.status(400).send('Email already exists');
+//      //Checking if the user is already in the Mongo DataBase(DB)
+//      const emailExist = await User.findOne({email: req.body.email});
+//      if (emailExist) return res.status(400).send('Email already exists');
 //
-//     //Hashing passwords
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+//      //Hashing passwords
+//      const salt = await bcrypt.genSalt(10);
+//      const hashedPassword = await bcrypt.hash(req.body.password, salt);
 //
-//     //Creating New User in Mongo DB with user input values.
+//   //Creating New User in Mongo DB with user input values.
 //     const user = new User({
 //         name: req.body.name,
 //         email: req.body.email,
 //         password: hashedPassword
-//     });
+//     })
 //
-//     try{
-//         const savedUser = await user.save();
-//         //res.send(savedUser);
-//         res.send({user: user._id})
-//     }catch(err){
+//     try {
+//       const savedUser = await user.save();
+//       //console.log(savedUser);
+//       res.status(201).render("success");
+//   } catch(err) {
+//       res.status(400).send(err);
+//   }
+// })
 //
-//         res.send(400).send(err);
-//     }
 //
-// });
-//
-// // Login Routing
-// router.post('/login', async (req, res) => {
-//
+// router.post('/signin', async (req, res) => {
+// //
 //     //Validate the input data matches the criteria.
 //     const {error} = loginValidation(req.body);
 //     if(error) return res.status(400).send(error.details[0].message);
@@ -145,11 +154,13 @@ router.post('/signin', async (req, res) => {
 //     if (!validpassword) return res.status(400).send('Invalid password');
 //
 //     //Create and assign a jwttoken
-//     const jwttoken = jwt.sign({_id: user._id}, process.env.SECRET, {expiresIn:'60s'});
-//     res.header('auth0-token', jwttoken).send(jwttoken);
+//     const jwttoken = jwt.sign({_id: user._id}, process.env.SECRET, {expiresIn: '24h'});
+//     res.header('auth0-token', jwttoken).render("main");
+//     console.log(jwttoken);
 //
 //
 //     //res.send('Successfully Logged in...!')
 // })
-//
+
+
 module.exports = router;
