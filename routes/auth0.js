@@ -12,9 +12,6 @@ const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 
-
-
-
 router.get('/', function(req, res) {
   res.render("landing");
 });
@@ -75,7 +72,8 @@ router.post("/createaccount", async (req, res) => {
   }, req.body.password, function(err, user) {
 
     if (err) {
-      console.log(err);
+      //console.log(err);
+      res.status(400).send(err.message);
       res.redirect("/createaccount");
     } else {
       passport.authenticate("local")(req, res, function() {
