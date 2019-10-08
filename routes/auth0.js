@@ -8,7 +8,7 @@ const {registerValidation, loginValidation} = require('../validation')
 
 
 router.get('/', function(req, res) {
-  res.render("main");
+  res.render("landing");
 });
 
 router.get('/About', function(req, res) {
@@ -85,7 +85,7 @@ router.post('/signin', async (req, res) => {
 
     //Create and assign a jwttoken
     const jwttoken = jwt.sign({_id: user._id}, process.env.SECRET, {expiresIn: '24h'});
-    res.header('auth0-token', jwttoken).render("Java");
+    res.header('auth0-token', jwttoken).render("main");
     console.log(jwttoken);
 
 

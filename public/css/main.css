@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  box-sizing: border-box;
+  flex: 1;
 }
 
 h1 {
@@ -22,6 +24,7 @@ h3 {
 p {
   font-family: 'Nunito', sans-serif;
   font-size: 1.2rem;
+  align-content: flex-start;
 }
 
 /* Dropdown Actions */
@@ -120,6 +123,18 @@ li.drpdown {
   color: #03a9f4;
   margin: 20px;
 }
+.iconsh {
+  color: #f0631a;
+  margin: 20px;
+}
+.iconsjs {
+  color: #fccb00;
+  margin: 20px;
+}
+.iconsn {
+  color: #15850a;
+  margin: 20px;
+}
 
 .iconsj:hover {
   color: red;
@@ -130,9 +145,20 @@ li.drpdown {
 }
 
 .iconsa:hover {
-  color: green;
+  color: #12d6de;
 }
-
+.iconsh:hover {
+  color: #efa67f;
+  margin: 20px;
+}
+.iconsjs:hover {
+  color: #efd777;
+  margin: 20px;
+}
+.iconsn:hover {
+  color: #9ee598;
+  margin: 20px;
+}
 /* footer */
 .foot {
   background-color: #c0f776;

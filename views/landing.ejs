@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tharun Techie </title>
+  <link rel="shortcut icon" type="image/ico" href="../images/TitleIcon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/landing.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+  <!-- CSS stylesheets -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+
+<body style="user-select: none" ondragstart="return false;" ondrop="return false;">
+
+  <div class=" wrapper">
+    <header>
+      <nav>
+        <div class="menu-icon">
+          <i class="fa fa-bars fa-2x"></i>
+        </div>
+        <a class="logo" href="#"><img src="../images/brandicons/BI_3.png" height="30" alt=""></a>
+        <div class="menu">
+          <ul>
+            <li><a href="/Createaccount">Create an account</a></li>
+            <li><a href="/SignIn">Sign in</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content">
+      <p>
+        Tharun techie is a new blog that will provide high quality technical and useful
+        information for engineer graduates. You can find lot of techincal courses over here.
+        We provide you great learning experience. Tharun techie will be a partnership,
+        owned and operated by <a href="https://pothurajtharun.github.io/MyWebsite/">Tharun Pothuraj</a> and Geetha Pothuraj.
+      </p>
+      <p>
+        Tharun Pothuraj left his respective job in order to
+        train engineer graduates and to help IT professionals via online crash courses. He is passion about coding since his
+        engineering days and started coding with a great passion.He is having hands on experience with numerous technologies like Java, Java script,
+        HTML, CSS covering most aspects of web programming and automation testing which covers selenium for web testing
+        and appium for mobile testing.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot">
+      <a href="https://www.facebook.com/tharun.pothuraj" target="_blank"><i class="fab fa-facebook-square fa-2x mt-3 mr-3 ficons iconf"></i></a>
+      <a href="https://www.instagram.com/abhitharun/?hl=en" target="_blank"><i class="fab fa-instagram fa-2x mr-3 ficons iconi"></i></a>
+      <a href="https://twitter.com/abhitharun1490" target="_blank"><i class="fab fa-twitter-square fa-2x mr-3 ficons icont"></i></a>
+      <a href="https://www.linkedin.com/in/tharun-kumar-171575102/" target="_blank"><i class="fab fa-linkedin fa-2x mr-3 ficons iconl"></i></a>
+      <a href="https://github.com/pothurajtharun" target="_blank"><i class="fab fa-github-square fa-2x mr-3 ficons icongi"></i></a>
+      <a href="https://www.youtube.com/channel/UCAuZnUv7Ma-SbZ-zc3JnYmQ?view_as=subscriber" target="_blank"><i class="fab fa-youtube fa-2x mr-3 ficons icony"></i></a>
+      <p class="mb-0 mt-2"> &copy; 2019 Designed by <a href="https://pothurajtharun.github.io/MyWebsite/">Tharun Pothuraj.</a></p>
+  </footer>
+
+  <script type="text/javascript">
+    // Menu-toggle button
+    $(document).ready(function() {
+      $(".menu-icon").on("click", function() {
+        $("nav ul").toggleClass("showing");
+      });
+    });
+
+    // Scrolling Effect
+
+    $(window).on("scroll", function() {
+      if ($(window).scrollTop()) {
+        $('nav').addClass('black');
+      } else {
+        $('nav').removeClass('black');
+      }
+    })
+  </script>
+
+</body>
+
+</html>
