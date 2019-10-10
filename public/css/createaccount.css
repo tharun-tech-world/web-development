@@ -1,5 +1,5 @@
 body{
-  
+
   background-image: linear-gradient(90deg, #dbc464, #68f6bc);
   margin: 4% 2% 0% 2%;
 }
@@ -7,7 +7,7 @@ h1{
   font-family: 'Ubuntu', sans-serif;
   color: black;
   font-size: 4rem;
-  margin: 3% auto 8% auto;
+  margin: 0% auto 8% auto;
 }
 .row{
   text-align: center;
@@ -19,7 +19,7 @@ img{
   box-shadow: 0 4px 8px 0 rgba(0, 122, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
 }
 .form-group{
-  margin: 6% 8% 4% 8%;
+  margin: 4% 8% 3% 8%;
 }
 
 .form-group input{
@@ -30,7 +30,7 @@ img{
   height: 50px;
 }
 
-.btn {
+.btn1 {
   width: 300px;
   height: 50px;
   background: #ebeb26;
@@ -51,7 +51,7 @@ img{
 
 }
 
-.btn:hover {
+.btn1:hover {
   background: #eff70f;
   background-image: -webkit-linear-gradient(top, #eff70f, #ced934);
   background-image: -moz-linear-gradient(top, #eff70f, #ced934);
@@ -59,6 +59,25 @@ img{
   background-image: -o-linear-gradient(top, #eff70f, #ced934);
   background-image: linear-gradient(to bottom, #eff70f, #ced934);
   text-decoration: none;
+}
+
+.gog{
+  
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  margin-top: 20px;
+  width: 300px;
+  height: 50px;
+  color: #c5051a;
+
+}
+.btn:hover{
+  color: white;
+  background-color: #c5051a;
+
 }
 
 @media(max-width: 786px) {

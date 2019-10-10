@@ -18,11 +18,10 @@ img{
   box-shadow: 0 4px 8px 0 rgba(0, 122, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
 }
 .form-group{
-  margin: 7%;
+  margin: 7% 7% 2% 7%;
 }
 
 .form-group input{
-
   width: 90%;
   margin: auto;
   border-radius: 50px;
@@ -30,7 +29,7 @@ img{
 }
 
 
-.btn {
+.btn1 {
   width: 300px;
   height: 50px;
   background: #ebeb26;
@@ -51,7 +50,7 @@ img{
 
 }
 
-.btn:hover {
+.btn1:hover {
   background: #eff70f;
   background-image: -webkit-linear-gradient(top, #eff70f, #ced934);
   background-image: -moz-linear-gradient(top, #eff70f, #ced934);
@@ -59,6 +58,24 @@ img{
   background-image: -o-linear-gradient(top, #eff70f, #ced934);
   background-image: linear-gradient(to bottom, #eff70f, #ced934);
   text-decoration: none;
+
+}
+
+.gog{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  margin-top: 20px;
+  width: 300px;
+  height: 50px;
+  color: #c5051a;
+
+}
+.btn:hover{
+  color: white;
+  background-color: #c5051a;
 
 }
 
