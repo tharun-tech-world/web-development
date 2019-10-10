@@ -2,10 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const User = require('../model/User');
-const {
-  registerValidation,
-  loginValidation
-} = require('../validation')
+const { registerValidation,loginValidation} = require('../validation')
 
 const session = require('express-session');
 const passport = require('passport');
@@ -101,8 +98,16 @@ router.post("/signin", function(req, res) {
   })
 })
 
+router.get("/auth/google",
+  passport.authenticate('google', { scope: ["profile"] })
+);
 
-
+router.get("/auth/google/tharuntechie",
+  passport.authenticate('google', { failureRedirect: "/signin" }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect("/main");
+  });
 
 
 //

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
 const session= require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 
 const userSchema = new mongoose.Schema({
 
@@ -14,7 +14,10 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        // required: true,
+        require: true,
+        index:true,
+        unique:true,
+        sparse:true
         // min: 6,
         // max: 255
     },
@@ -24,20 +27,25 @@ const userSchema = new mongoose.Schema({
         // min: 6,
         // max: 255
     },
-    // date: {
-    //     type: Date,
-    //     default: Date.now()
-    // }
+    googleId: {
+      type: String,
+      require: true,
+      index:true,
+      unique:true,
+      sparse:true
+
+    },
+    date: {
+        type: Date,
+        default: Date.now()
+    }
 
 
 });
 
 userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema)
+
 module.exports = User;
-
-passport.use(User.createStrategy());
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
