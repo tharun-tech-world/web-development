@@ -9,18 +9,17 @@
 
   <!-- Bootstrap Queries -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-  <!-- CSS stylesheets -->
+  <!-- Font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS stylesheets -->
   <link rel="stylesheet" href="../css/register.css">
+
 </head>
 
 <body style="user-select: none" ondragstart="return false;" ondrop="return false;">
@@ -31,7 +30,7 @@
     <!-- Sign up container goes here. -->
 
     <div class="form-container sign-up-container">
-      <form action="/register" method="POST">
+      <form action="/register" method="POST" id="signupform">
         <h1>Create Account</h1>
         <div class="social-container">
           <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -39,9 +38,12 @@
           <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <span>or use your email for registration</span>
-        <input type="text" placeholder="Name" name=name />
-        <input type="email" placeholder="Email" name="username"/>
-        <input type="password" placeholder="Password" name="password" />
+        <input id="su_name" type="text" placeholder="Name" name=name />
+        <span id="su_name_error"></span>
+        <input id="su_email" type="email" placeholder="Email" name="username" />
+        <span id="su_email_error"></span>
+        <input id="su_password" type="password" placeholder="Password" name="password" />
+        <span id="su_password_error"></span>
         <button type="submit">Sign Up</button>
       </form>
     </div>
@@ -49,7 +51,7 @@
     <!-- Sign in Conatiner goes here. -->
 
     <div class="form-container sign-in-container">
-      <form action="/signin" method="POST">
+      <form action="/signin" method="POST" id="signinform">
         <h1>Sign in</h1>
         <div class="social-container">
           <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -57,9 +59,10 @@
           <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <span>or use your account</span>
-        <input type="email" placeholder="Email" name="username" />
-        <span id="erroremail"></span>
-        <input type="password" placeholder="Password" name="password" />
+        <input id="si_email" type="email" placeholder="Email" name="username" />
+        <span id="si_email_error"> </span>
+        <input id="si_password" type="password" placeholder="Password" name="password" />
+        <span id="si_password_error"></span>
         <a href="#">Forgot your password?</a>
         <button type="submit">Sign In</button>
       </form>
@@ -81,7 +84,6 @@
   </div>
 
   <script type="text/javascript">
-
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
@@ -90,13 +92,71 @@
       document.title = "Sign Up";
     });
 
-      signInButton.addEventListener('click', () => {
+    signInButton.addEventListener('click', () => {
       container.classList.remove("right-panel-active");
       document.title = "Sign in";
     });
 
+    // Sign Up validation goes here.
 
+    document.getElementById("signupform").onsubmit = function() {
 
+      var su_name = document.getElementById('su_name').value;
+      var su_email = document.getElementById('su_email').value;
+      var su_password = document.getElementById('su_password').value;
+      var su_submit = true;
+
+      if (su_name == '' || su_name == null) {
+        document.getElementById("su_name_error").innerHTML = "Please enter your name";
+        document.getElementById("su_name_error").style.color = 'red'
+        su_submit = false;
+      }
+      if (su_email == '' || su_email == null) {
+        document.getElementById("su_email_error").innerHTML = "Please enter your email";
+        document.getElementById("su_email_error").style.color = 'red'
+        su_submit = false;
+      }
+      if (su_password == '' || su_password == null) {
+        document.getElementById("su_password_error").innerHTML = "Please enter your password";
+        document.getElementById("su_password_error").style.color = 'red'
+        su_submit = false;
+      }
+      return su_submit;
+    }
+
+    function removeWarningSignUp() {
+      document.getElementById(this.id + "_error").innerHTML = "";
+    }
+    document.getElementById("su_name").onkeyup = removeWarningSignUp;
+    document.getElementById("su_email").onkeyup = removeWarningSignUp;
+    document.getElementById("su_password").onkeyup = removeWarningSignUp;
+
+//Sign in validation goes here.
+
+    document.getElementById("signinform").onsubmit = function() {
+
+      var si_email = document.getElementById('si_email').value;
+      var si_password = document.getElementById('si_password').value;
+      var si_submit = true;
+
+      if (si_email == '' || si_email == null) {
+        document.getElementById("si_email_error").innerHTML = "Please enter your email";
+        document.getElementById("si_email_error").style.color = 'red'
+        si_submit = false;
+      }
+      if (si_password == '' || si_password == null) {
+        document.getElementById("si_password_error").innerHTML = "Please enter your password";
+        document.getElementById("si_password_error").style.color = 'red'
+        si_submit = false;
+      }
+      return si_submit;
+    }
+
+    function removeWarningSignIn() {
+      document.getElementById(this.id + "_error").innerHTML = "";
+    }
+    document.getElementById("si_email").onkeyup = removeWarningSignIn;
+    document.getElementById("si_password").onkeyup = removeWarningSignIn;
   </script>
 
 </body>
