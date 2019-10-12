@@ -13,18 +13,12 @@ router.get('/', function(req, res) {
   res.render("landing");
 });
 
-router.get('/About', function(req, res) {
-  res.sendFile('About.html', {
-    root: path.join(__dirname, './public/html')
-  });
-});
-
-router.get('/createaccount', function(req, res) {
-  res.render("Createaccount")
+router.get('/register', function(req, res) {
+  res.render("register")
 });
 
 router.get('/signin', function(req, res) {
-  res.render("SignIn");
+  res.render("register");
 });
 
 router.get('/java', function(req, res) {
@@ -62,16 +56,17 @@ router.get("/signout", function(req, res) {
   res.redirect("/");
 })
 
-router.post("/createaccount", async (req, res) => {
+
+// Post Routes Goes Here
+router.post("/register", async (req, res) => {
 
   User.register({
     username: req.body.username
   }, req.body.password, function(err, user) {
-
     if (err) {
       //console.log(err);
       res.status(400).send(err.message);
-      res.redirect("/createaccount");
+      res.redirect("/register");
     } else {
       passport.authenticate("local")(req, res, function() {
         res.redirect("/success")
