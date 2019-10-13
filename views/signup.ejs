@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sign up</title>
+  <link rel="shortcut icon" type="image/ico" href="../images/TitleIcon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Queries -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS stylesheets -->
+  <link rel="stylesheet" href="../css/signup.css">
+
+</head>
+
+<body style="user-select: none" ondragstart="return false;" ondrop="return false;">
+
+  <h2>Sign up to Tharun techie !!!</h2>
+  <div class="container" id="container">
+
+    <!-- Sign up container goes here. -->
+
+    <div class="form-container sign-in-container">
+      <form action="/signup" method="POST" id="signupform">
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="/auth/google" class="social"><i class="fab fa-google"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email for registration</span>
+        <input id="su_name" type="text" placeholder="Name" name=name />
+        <span id="su_name_error"></span>
+        <input id="su_email" type="email" placeholder="Email" name="username" />
+        <span id="su_email_error"></span>
+        <input id="su_password" type="password" placeholder="Password" name="password" />
+        <span id="su_password_error"></span>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info to Tharun techie</p>
+          <a class="sa" href="/signin" >Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    // Sign Up validation goes here.
+
+    document.getElementById("signupform").onsubmit = function() {
+
+      var su_name = document.getElementById('su_name').value;
+      var su_email = document.getElementById('su_email').value;
+      var su_password = document.getElementById('su_password').value;
+      var su_submit = true;
+
+      if (su_name == '' || su_name == null) {
+        document.getElementById("su_name_error").innerHTML = "Please enter your name";
+        document.getElementById("su_name_error").style.color = 'red'
+        su_submit = false;
+      }
+      if (su_email == '' || su_email == null) {
+        document.getElementById("su_email_error").innerHTML = "Please enter your email";
+        document.getElementById("su_email_error").style.color = 'red'
+        su_submit = false;
+      }
+      if (su_password == '' || su_password == null) {
+        document.getElementById("su_password_error").innerHTML = "Please enter your password";
+        document.getElementById("su_password_error").style.color = 'red'
+        su_submit = false;
+      }
+      return su_submit;
+    }
+
+    function removeWarningSignUp() {
+      document.getElementById(this.id + "_error").innerHTML = "";
+    }
+    document.getElementById("su_name").onkeyup = removeWarningSignUp;
+    document.getElementById("su_email").onkeyup = removeWarningSignUp;
+    document.getElementById("su_password").onkeyup = removeWarningSignUp;
+
+
+  </script>
+
+</body>
+
+</html>

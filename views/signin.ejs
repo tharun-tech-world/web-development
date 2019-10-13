@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sign in</title>
+  <link rel="shortcut icon" type="image/ico" href="../images/TitleIcon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap Queries -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS stylesheets -->
+  <link rel="stylesheet" href="../css/signin.css">
+
+</head>
+
+<body style="user-select: none" ondragstart="return false;" ondrop="return false;">
+
+  <h2>Sign in to Tharun techie !!!</h2>
+  <div class="container" id="container">
+
+    <!-- Sign in Conatiner goes here. -->
+    <div class="form-container sign-in-container">
+      <form action="/signin" method="POST" id="signinform">
+        <h1>Sign in</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="/auth/google" class="social"><i class="fab fa-google"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your account</span>
+        <input id="si_email" type="email" placeholder="Email" name="username" />
+        <span id="si_email_error"> </span>
+        <input id="si_password" type="password" placeholder="Password" name="password" />
+        <span id="si_password_error"></span>
+        <a href="#">Forgot your password?</a>
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us Tharun techie</p>
+          <a class="sa" href="/signup" >Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+//Sign in validation goes here.
+
+    document.getElementById("signinform").onsubmit = function() {
+
+      var si_email = document.getElementById('si_email').value;
+      var si_password = document.getElementById('si_password').value;
+      var si_submit = true;
+
+      if (si_email == '' || si_email == null) {
+        document.getElementById("si_email_error").innerHTML = "Please enter your email";
+        document.getElementById("si_email_error").style.color = 'red'
+        si_submit = false;
+      }
+      if (si_password == '' || si_password == null) {
+        document.getElementById("si_password_error").innerHTML = "Please enter your password";
+        document.getElementById("si_password_error").style.color = 'red'
+        si_submit = false;
+      }
+      return si_submit;
+    }
+    function removeWarningSignIn() {
+      document.getElementById(this.id + "_error").innerHTML = "";
+    }
+    document.getElementById("si_email").onkeyup = removeWarningSignIn;
+    document.getElementById("si_password").onkeyup = removeWarningSignIn;
+
+  </script>
+
+</body>
+
+</html>
