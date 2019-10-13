@@ -13,12 +13,12 @@ router.get('/', function(req, res) {
   res.render("landing");
 });
 
-router.get('/register', function(req, res) {
-  res.render("register")
+router.get('/signup', function(req, res) {
+  res.render("signup")
 });
 
 router.get('/signin', function(req, res) {
-  res.render("register");
+  res.render("signin");
 });
 
 router.get('/java', function(req, res) {
@@ -58,7 +58,7 @@ router.get("/signout", function(req, res) {
 
 
 // Post Routes Goes Here
-router.post("/register", async (req, res) => {
+router.post("/signup", async (req, res) => {
 
   User.register({
     username: req.body.username
@@ -66,7 +66,7 @@ router.post("/register", async (req, res) => {
     if (err) {
       //console.log(err);
       res.status(400).send(err.message);
-      res.redirect("/register");
+      res.redirect("/signup");
     } else {
       passport.authenticate("local")(req, res, function() {
         res.redirect("/success")

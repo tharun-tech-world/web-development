@@ -54,15 +54,14 @@ nav.black ul {
   background: #000;
   color: white;
 }
-nav.black ul a {
 
+nav.black ul a {
   color: white;
 }
 
 nav ul li {
   display: inline-block;
   padding: 10px 40px 5px 10px;
-  ;
 }
 
 nav ul li a {
@@ -74,7 +73,6 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-
   color: #06c6b4;
 }
 
@@ -95,12 +93,13 @@ nav ul li a:hover {
   background-color: #f1df9f;
   text-align: center;
 }
-.foot p{
+
+.foot p {
   margin-bottom: 0px;
   padding-bottom: 10px;
 }
-.ficons {
 
+.ficons {
   margin: 20px 15px 5px 0px;
   color: #707573;
 }
@@ -129,18 +128,18 @@ nav ul li a:hover {
   color: red;
 }
 
-
-
 @media(max-width: 786px) {
   .logo {
     position: fixed;
     top: 0;
     margin-top: 16px;
   }
+
   nav ul {
     max-height: 0px;
     background-color: black;
   }
+
   nav ul li a {
     text-decoration: none;
     color: white;
@@ -148,15 +147,18 @@ nav ul li a:hover {
     font-size: 1rem;
     font-family: 'Ubuntu', sans-serif;
   }
+
   .showing {
     max-height: 14em;
   }
+
   nav ul li {
     box-sizing: border-box;
     width: 100%;
     padding-top: 14px;
     text-align: center;
   }
+
   .menu-icon {
     display: block;
   }

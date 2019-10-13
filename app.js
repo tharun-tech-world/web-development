@@ -15,7 +15,7 @@ const findOrCreate = require('mongoose-findorcreate');
 
 
 //Imports Routes Here
- const auth0Route = require('./routes/auth0');
+ const authRoute = require('./routes/auth');
  const postRoute = require('./routes/postroutes');
 
 
@@ -89,7 +89,7 @@ passport.deserializeUser(function(id, done) {
 
 
  //Routes Middlewares
- app.use('/', auth0Route);
+ app.use('/', authRoute);
  app.use('/posts', postRoute);
 
 
